@@ -20,10 +20,23 @@
       // class App(){
       // уже не используют потом пример покажу
       // }
+      let holder = 'Введите текст'
       function App() {
         // let info = React.useState(0)
         // console.log(info);
         let [count, setCount] = React.useState(0) // названия можно абслолютно любые дать в скобках, его вызывать только в функции, показать 100
+        let [text, setText] = React.useState('')
+        let [view, setView] = React.useState(true)
+        let [word, setWord] = React.useState('')
+
+        let content;
+        if(word.length === 0){
+          content = 'Вы ничего не ввели'
+        }else if(word.length > 0 && word.length <= 5){
+          content = 'Вы ввели не больше 5 символов'
+        }else{
+          content = 'Вы ввели больше 5 символов'
+        }
         // info[0] просто показать, напонимть про деструктуризацию таким образом
         // info[1]
         // let array = ['BMW', 'DUCATTI']
@@ -94,7 +107,7 @@
           //     }
           //   }
           // } ДЛИННЫЙ ВАРИАНТ 20 СТРОК
-          
+
           // sym === "-"
           // ? count !== 0
           // ? setCount(count - 1)
@@ -102,7 +115,7 @@
           // : count !== 5
           // ? setCount(count + 1)
           // : (setCount("Больше нельзя"), setTimeout(() => setCount(5), 1000)) // КОМПАКТНЫЙ ВАРИАНТ, НО НЕ ДЛЯ ВСЕХ УДОБНЫЙ, 7 СТРОК
-          
+
           //     if (sym === "-") {
           //       setCount(Math.max(count - 1, 0))
           //       if (count === 0) {
@@ -128,39 +141,71 @@
           //       setTimeout(() => setCount(5), 1000)
           //     }
           //   } 10 СТРОК
-          
-        //   if (sym === "-") {
-        //     setCount(count > 0 ? count - 1 : "Меньше нельзя")
-        //     count === 0 && setTimeout(() => setCount(0), 1000)
-        //   } else {
-        //     setCount(count < 5 ? count + 1 : "Больше нельзя")
-        //     count === 5 && setTimeout(() => setCount(5), 1000)
-        //   } 7 СТРОК, БЕСПОЛЕЗНЫЙ ВАРИАНТ, ВЕДЬ ВАРИАНТ НА 97 СТРОКЕ ТАКОЙ ЖЕ, ЛИШЬ ЧИТАБЕЛЬНОСТЬ ХУЖЕ У НЕГО
+
+          if (sym === '-') {
+            setCount(count > 0 ? count - 1 : 'Меньше нельзя')
+            count === 0 && setTimeout(() => setCount(0), 1000)
+          } else {
+            setCount(count < 5 ? count + 1 : 'Больше нельзя')
+            count === 5 && setTimeout(() => setCount(5), 1000)
+          }
+          // 7 СТРОК, БЕСПОЛЕЗНЫЙ ВАРИАНТ, ВЕДЬ ВАРИАНТ НА 97 СТРОКЕ ТАКОЙ ЖЕ, ЛИШЬ ЧИТАБЕЛЬНОСТЬ ХУЖЕ У НЕГО
         }
         // так следует писать если действий много и лучше создать отдельную функцию
         return (
-          <div className='box'>
-            <button
-              disabled={count === "Меньше нельзя" || count === "Больше нельзя"}
-              onClick={() => changeCount("-")}
-              // Too many re-renders. React limits the number of renders to prevent an infinite loop
-              // Проблема в том, что мы сразу вызываем функцию changeCount в обработчике событий onClick.
-              // Чтобы устранить ошибку, передайте обработчику события onClick функцию, а не результат ее вызова.
-              // ВОТ ТАК - onClick={()=>changeCount("-")} , А НЕ ТАК onClick={changeCount("-")}
-            >
-              -
-            </button>
-            <h1>{count}</h1>
-            <button
-              disabled={count === "Больше нельзя" || count === "Меньше нельзя"}
-              onClick={() => changeCount("+")}
-            >
-              +
-            </button>
+          // <div> можно создавать только один элемент в return, больше нельзя
+          <div>
+            <div className="box">
+              <button
+                disabled={
+                  count === 'Меньше нельзя' || count === 'Больше нельзя'
+                }
+                onClick={() => changeCount('-')}
+                // Too many re-renders. React limits the number of renders to prevent an infinite loop
+                // Проблема в том, что мы сразу вызываем функцию changeCount в обработчике событий onClick.
+                // Чтобы устранить ошибку, передайте обработчику события onClick функцию, а не результат ее вызова.
+                // ВОТ ТАК - onClick={()=>changeCount("-")} , А НЕ ТАК onClick={changeCount("-")}
+              >
+                -
+              </button>
+              <h1>{count}</h1>
+              <button
+                disabled={
+                  count === 'Больше нельзя' || count === 'Меньше нельзя'
+                }
+                onClick={() => changeCount('+')}
+              >
+                +
+              </button>
+            </div>
+            <div className="box">
+              <input 
+                type="text"
+                placeholder={holder}
+                value={text}
+                onChange={(e)=>setText(e.target.value)}
+              />
+              <p>Ваш текст - {text ? text : 'Напиши что-нибудь в инпут'}</p>
+            </div>
+            <div className="box">
+              <input 
+                type={view ? 'text' : 'password'}
+
+              />
+              <button onClick={()=>setView(!view)}>{view ? 'Cкрыть' : 'Показать'}</button>
+            </div>
+            <div className="box">
+              <input 
+                type="text"
+                value={word}
+                onChange={(event)=> setWord(event.target.value)}
+              />
+              <p>{content}</p>
+            </div>
           </div>
         )
       }
-      const app = document.querySelector("#root")
+      const app = document.querySelector('#root')
       const root = ReactDOM.createRoot(app)
       root.render(<App />)
     </script>
