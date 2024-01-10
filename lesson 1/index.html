@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      button:disabled {
+        background: red;
+      }
+    </style>
+  </head>
+  <body bgcolor="brown">
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // class App(){
+      // уже не используют потом пример покажу
+      // }
+      function App() {
+        // let info = React.useState(0)
+        // console.log(info);
+        let [count, setCount] = React.useState(0) // названия можно абслолютно любые дать в скобках, его вызывать только в функции, показать 100
+        // info[0] просто показать, напонимть про деструктуризацию таким образом
+        // info[1]
+        // let array = ['BMW', 'DUCATTI']
+        // let [car, moto] = array
+        // console.log(car, moto);
+        // let h1 = document.querySelector('h1'); ТАК НЕ ПИШУТ ВООБЩЕ, ТАКАЯ ЗАПИСЬ ТОЛЬКО БЕСИТ
+        // h1.innerHTML = count
+
+        // return (
+        // <h1>Russell</h1>// JSX - это расширение JavaScript, которое позволяет создавать деревья DOM с использованием синтаксиса, подобного HTML.
+        // <h2></h2> // JSX expressions must have one parent element. Нужен дочерний элемент, он может хоть сто элементов содержать в себе.
+        //class нельзя писать, нужно className, ведь jsx это расширение javascript
+        //let count = 0 так писать нельзя, так как нет реактивности, менять не получится, только выводить
+        //hooks - useState() первый, создаёт реактивное состояние
+
+        //   <div className='wrapper'>
+        //     <div className='box'>
+        //         <button onClick={() => setCount(count > 0 ? --count : 0)}>-</button>
+        //         <h1>{count}</h1>
+        //         <button onClick={() => setCount(count < 5 ? ++count : 5)}>+</button>
+        //     </div>
+        // )
+        //   const delCount = () => {
+        //       if(count != 0){
+        //          setCount(count-1)
+        //       }else if(count===0){
+        //         setCount('Меньше нельзя')
+        //         setTimeout(() => {
+        //             setCount(0)
+        //         }, 1000);
+        //       }
+        //   }
+        //   const addCount = () => {
+        //     if(count !== 5){
+        //          setCount(count+1)
+        //       }else if(count===5){
+        //           setCount('Больше нельзя')
+        //        setTimeout(() => {
+        //             setCount(5)
+        //         }, 1000);
+        //       }
+        //   }
+        // return (
+        //       <div className='box'>
+        //           <button disabled={count === 'Меньше нельзя'} onClick={delCount}>-</button>
+        //           <h1>{count}</h1>
+        //           <button disabled={count === 'Больше нельзя'} onClick={addCount}>+</button>
+        //       </div>
+        //   )
+        const changeCount = (sym) => {
+          //   if (sym === "-") {
+          //     if (count != 0) {
+          //       setCount(count - 1)
+          //     } else if (count === 0) {
+          //       setCount("Меньше нельзя")
+          //       setTimeout(() => {
+          //         setCount(0)
+          //       }, 1000)
+          //     }
+          //   } else {
+          //     if (count !== 5) {
+          //       setCount(count + 1)
+          //     } else if (count === 5) {
+          //       setCount("Больше нельзя")
+          //       setTimeout(() => {
+          //         setCount(5)
+          //       }, 1000)
+          //     }
+          //   }
+          // } ДЛИННЫЙ ВАРИАНТ 20 СТРОК
+          
+          // sym === "-"
+          // ? count !== 0
+          // ? setCount(count - 1)
+          // : (setCount("Меньше нельзя"), setTimeout(() => setCount(0), 1000))
+          // : count !== 5
+          // ? setCount(count + 1)
+          // : (setCount("Больше нельзя"), setTimeout(() => setCount(5), 1000)) // КОМПАКТНЫЙ ВАРИАНТ, НО НЕ ДЛЯ ВСЕХ УДОБНЫЙ, 7 СТРОК
+          
+          //     if (sym === "-") {
+          //       setCount(Math.max(count - 1, 0))
+          //       if (count === 0) {
+          //         setCount("Меньше нельзя")
+          //         setTimeout(() => setCount(0), 1000)
+          //       }
+          //     } else {
+          //       setCount(Math.min(count + 1, 5))
+          //       if (count === 5) {
+          //         setCount("Больше нельзя")
+          //         setTimeout(() => setCount(5), 1000)
+          //       }
+          //    } 12 СТРОК ВЫХОДИТ, ПОПРОБУЕМ ЕЩЁ СИЛЬНЕЕ СОКРАТИТЬ НАШ КОД
+
+          //   if (sym === "-") {
+          //     setCount(count > 0 ? count - 1 : "Меньше нельзя")
+          //     if (count === 0) {
+          //       setTimeout(() => setCount(0), 1000)
+          //     }
+          //   } else {
+          //     setCount(count < 5 ? count + 1 : "Больше нельзя")
+          //     if (count === 5) {
+          //       setTimeout(() => setCount(5), 1000)
+          //     }
+          //   } 10 СТРОК
+          
+        //   if (sym === "-") {
+        //     setCount(count > 0 ? count - 1 : "Меньше нельзя")
+        //     count === 0 && setTimeout(() => setCount(0), 1000)
+        //   } else {
+        //     setCount(count < 5 ? count + 1 : "Больше нельзя")
+        //     count === 5 && setTimeout(() => setCount(5), 1000)
+        //   } 7 СТРОК, БЕСПОЛЕЗНЫЙ ВАРИАНТ, ВЕДЬ ВАРИАНТ НА 97 СТРОКЕ ТАКОЙ ЖЕ, ЛИШЬ ЧИТАБЕЛЬНОСТЬ ХУЖЕ У НЕГО
+        }
+        // так следует писать если действий много и лучше создать отдельную функцию
+        return (
+          <div className='box'>
+            <button
+              disabled={count === "Меньше нельзя" || count === "Больше нельзя"}
+              onClick={() => changeCount("-")}
+              // Too many re-renders. React limits the number of renders to prevent an infinite loop
+              // Проблема в том, что мы сразу вызываем функцию changeCount в обработчике событий onClick.
+              // Чтобы устранить ошибку, передайте обработчику события onClick функцию, а не результат ее вызова.
+              // ВОТ ТАК - onClick={()=>changeCount("-")} , А НЕ ТАК onClick={changeCount("-")}
+            >
+              -
+            </button>
+            <h1>{count}</h1>
+            <button
+              disabled={count === "Больше нельзя" || count === "Меньше нельзя"}
+              onClick={() => changeCount("+")}
+            >
+              +
+            </button>
+          </div>
+        )
+      }
+      const app = document.querySelector("#root")
+      const root = ReactDOM.createRoot(app)
+      root.render(<App />)
+    </script>
+  </body>
+</html>
