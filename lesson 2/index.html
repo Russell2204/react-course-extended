@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+  </head>
+  <body bgcolor="brown">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      let title = 'Циклы'
+      function App() {
+        let [text, setText] = React.useState('')
+        let [game, setGame] = React.useState('select')
+        let [notes, setNotes] = React.useState([])
+        const addNote = (event) => {
+          event.preventDefault()
+          if(text && text.length > 1){
+            if (notes.some((note) => note.name === text)) { // Метод some() проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции.
+              alert('This name already exists')
+            } else {
+              let newNote = {
+                id: Math.random(),
+                name: text
+              }
+              setNotes([...notes, newNote])
+              setText(' ')
+            }
+          } else {
+            alert('Type anything on input')
+          }
+          }
+        const delNote = (id) => {
+          setNotes(notes.filter(note => note.id !== id))         
+        }
+          return (
+          <div className="wrapper">
+              <h1>{title}</h1>
+              <form onSubmit={(event)=> addNote(event)}>
+                <input 
+                  type="text"
+                  value={text}
+                  onChange={(event) => setText(event.target.value)}
+                />
+                <button>Добавить</button>  
+                <h2>Вы ввели текст - {text}</h2>
+              </form>
+              <ul className="list">
+                  { notes.length > 0 ? (
+                    notes.map((note, i) => (
+                    <li key={note.id}>
+                      <h2>Название: {note.name}</h2>  
+                      <h2>Ячейка: {i}</h2>  
+                      <h2>ID: {note.id}</h2>  
+                      <button className="del" onClick={( ) => delNote(note.id)}>x</button>
+                    </li>
+                  ))
+                  ) : (
+                    <h2>Массив пустой...</h2>
+                  )
+                    
+                }    
+              </ul>
+              <select value={game} onChange={(event) => setGame(event.target.value)}>
+                  <option>football</option>  
+                  <option>basketball</option>  
+                  <option>voleyball</option>  
+              </select>
+              <h2>Игра: {game}</h2>
+          </div>
+        )
+      }
+  
+      const app = document.querySelector('#root')
+      const root = ReactDOM.createRoot(app)
+      root.render(<App />)
+    </script>
+  </body>
+</html>
