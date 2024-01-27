@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style/style.css">
+  </head>
+  <body bgcolor="brown">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      let title = 'Циклы'
+      function App() {
+        let [text, setText] = React.useState('')
+        let [game, setGame] = React.useState('')
+        let [players, setPlayers] = React.useState({
+          football:['Ronaldo', 'Messi'],
+          basketball:['Pasha', 'Rustam'],
+          voleyball:['Vika', 'Anton']
+        })
+        // let [football, setFootball] = React.useState(['Ronaldo', 'Messi'])
+        // let [basketball, setBasketball] = React.useState(['Pasha', 'Rustam'])
+        // let [voleyball, setVoleyball] = React.useState(['Vika', 'Anton']) сначала показать это
+        
+        // const addNote = (event) => {
+        //   event.preventDefault()
+        //   if(text && text.length > 1){
+        //     if (notes.some((note) => note.name === text)) { // Метод some() проверяет, удовлетворяет ли какой-либо элемент массива условию, заданному в передаваемой функции.
+        //       alert('This name already exists')
+        //     } else {
+        //       let newNote = {
+        //         id: Math.random(),
+        //         name: text
+        //       }
+        //       setNotes([...notes, newNote])
+        //       setText(' ')
+        //     }
+        //   } else {
+        //     alert('Type anything on input')
+        //   }
+        //   }
+        
+        //   const delNote = (id) => {
+        //   setNotes(notes.filter(note => note.id !== id))         
+        // }
+        
+        const addPlayers = (event) => {
+          event.preventDefault()
+          // if (text.length > 2 && game == 'football') {
+          //   setFootball([...football, text])
+          // }else if (text.length > 2 && game == 'basketball') {
+          //   setBasketball([...basketball, text])
+          // }else if (text.length > 2 && game == 'voleyball') {
+          //   setVoleyball([...voleyball, text])
+          // setText('')
+          // setGame('')
+          // } слабый способ
+          if (text.length > 2 && game) {
+            if (players[game].some((player) => player === text)) {
+              alert('This name already exists')
+            }else{
+            let newPlayers = {...players}
+            newPlayers[game] = [...players[game], text]
+            setPlayers(newPlayers)
+            console.log(players[game]);
+          }
+          }
+          setText('')
+          setGame('')
+        }
+          return (
+          <div className="wrapper">
+              <h1>{title}</h1>
+              <form onSubmit={(event)=> addPlayers(event)}>
+                <input 
+                  type="text"
+                  value={text}
+                  onChange={(event) => setText(event.target.value)}
+                />
+                <select value={game} onChange={(event) => setGame(event.target.value)}>
+                    <option>Выберите игру</option>  
+                    <option>football</option>  
+                    <option>basketball</option>  
+                    <option>voleyball</option>  
+                </select>
+                <button>Добавить</button>
+              </form>
+              <ul className="list">
+                  <div className="item">
+                      <h2>football players</h2>
+                      {
+                        // football.map((player) => (
+                        //   <li key={player}>{player}</li> сначала это
+                        players.football.map((player) => (
+                          <li key={player}>{player}</li>
+                        ))
+                      }
+                  </div>  
+                  <div className="item">
+                      <h2>basketball players</h2>
+                      {
+                        // basketball.map((player) => (
+                        //   <li key={player}>{player}</li>
+                        // ))
+                        players.basketball.map((player) => (
+                          <li key={player}>{player}</li>
+                        ))
+                      }
+                  </div>  
+                  <div className="item">
+                      <h2>voleyball players</h2>
+                      {
+                        // voleyball.map((player) => (
+                        //   <li key={player}>{player}</li>
+                        players.voleyball.map((player) => (
+                          <li key={player}>{player}</li>
+                        ))
+                      }
+                  </div>  
+              </ul>
+          </div>
+        )
+      }
+  
+      const app = document.querySelector('#root')
+      const root = ReactDOM.createRoot(app)
+      root.render(<App />)
+    </script>
+  </body>
+</html>

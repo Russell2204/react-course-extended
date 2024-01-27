@@ -6,8 +6,11 @@ function App() {
   return (
     <div className="wrapper">
       <h1>{count}</h1>
-      <button onClick={() => setCount(count+1)}>+</button>
-      <button onClick={() => setCount(count-1)}>-</button>
+      <div>
+        <button onClick={() => setCount(count+1)}>+</button>
+        <button onClick={() => setCount(count-1)}>-</button>
+      </div>
+      
     </div>
   )
 }
