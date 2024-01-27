@@ -1,0 +1,35 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    font-family: cursive;
+}
+body{
+    background: rgba(101, 60, 9, 0.329);
+}
+.nav{
+    background: beige;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.list{
+    display: flex;
+    gap: 20px;
+}
+.link{
+    color: black;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+.logo{
+    font-size: 50px;
+    color: red;
+    font-weight: 900;
+    font-family: Trebuchet MS;
+}
