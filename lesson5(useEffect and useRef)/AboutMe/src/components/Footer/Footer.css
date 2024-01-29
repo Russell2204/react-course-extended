@@ -1,0 +1,12 @@
+.footer{
+    background: #000;
+    padding-bottom: 60px;
+}
+.footer .main-title{
+    font-weight: 400;
+}
+.footer-social{
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+}
