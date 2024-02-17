@@ -1,0 +1,35 @@
+<svg width="56.000000" height="56.000000" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_2_118_dd" x="0.000000" y="0.000000" width="56.000000" height="56.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feMorphology radius="-1" in="" result="BackgroundImageFix"/>
+			<feOffset dx="1" dy="4"/>
+			<feGaussianBlur stdDeviation="3.33333"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0.27843 0 0 0 0 0.57647 0 0 0 0 1 0 0 0 0.2 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+		<clipPath id="clip2_124">
+			<rect id="pressure" width="19.000000" height="19.000000" transform="translate(17.000000 15.000000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient id="paint_linear_2_125_0" x1="20.908058" y1="31.382957" x2="32.072891" y2="20.222176" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#34CDFA"/>
+			<stop offset="1.000000" stop-color="#E8D9F1"/>
+		</linearGradient>
+	</defs>
+	<g filter="url(#filter_2_118_dd)">
+		<circle id="Ellipse 2" cx="27.000000" cy="24.000000" r="19.000000" fill="#FFFFFF" fill-opacity="1.000000"/>
+	</g>
+	<rect id="pressure" width="19.000000" height="19.000000" transform="translate(17.000000 15.000000)" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip2_124)">
+		<path id="Vector" d="M27.1346 15.2813C26.8173 14.9641 26.3414 14.8847 25.9448 15.202C25.9448 15.202 25.8655 15.202 25.8655 15.2813C25.2309 16.0745 19.3615 23.213 19.3615 26.8615C19.3615 30.8273 22.5342 34 26.5 34C30.4659 34 33.6385 30.8273 33.6385 26.8615C33.6385 23.213 27.7691 16.0745 27.1346 15.2813Z" fill="url(#paint_linear_2_125_0)" fill-opacity="1.000000" fill-rule="nonzero"/>
+		<path id="Vector" d="M29.4723 24.2169L24.7051 28.9841L23.5834 27.8624L28.3506 23.0953L29.4723 24.2169Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector" d="M24.9136 24.482C24.9136 24.92 24.5585 25.2751 24.1205 25.2751C23.6824 25.2751 23.3273 24.92 23.3273 24.482C23.3273 24.0439 23.6824 23.6888 24.1205 23.6888C24.5585 23.6888 24.9136 24.0439 24.9136 24.482Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector" d="M29.6726 27.6547C29.6726 28.0927 29.3175 28.4478 28.8795 28.4478C28.4414 28.4478 28.0863 28.0927 28.0863 27.6547C28.0863 27.2166 28.4414 26.8615 28.8795 26.8615C29.3175 26.8615 29.6726 27.2166 29.6726 27.6547Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>
