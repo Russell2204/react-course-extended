@@ -1,4 +1,4 @@
-@import './../../assets/styles/global.scss';
+@import "./../../assets/styles/global.scss";
 
 .header {
     &__nav {
@@ -54,16 +54,59 @@
                 color: rgb(147, 156, 176);
                 font-size: 25px;
                 margin-bottom: 14px;
-                &:last-child{
+                &:last-child {
                     margin-bottom: 0;
                 }
             }
-            img{
+            img {
                 width: 119px;
                 height: 199px;
                 position: absolute;
                 left: 65%;
                 top: 0;
+            }
+        }
+        &-right {
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: $BS;
+            background: rgb(255, 255, 255);
+            max-width: 750px;
+            width: 100%;
+        }
+        &-list {
+            display: flex;
+            flex-direction: column;
+            row-gap: 9px;
+            li {
+                display: flex;
+                align-items: center;
+                column-gap: 30px;
+
+                h3 {
+                    color: rgb(147, 156, 176);
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+                p {
+                    color: rgb(0, 0, 0);
+                    font-size: 14px;
+                }
+                &:nth-child(2) {
+                    p {
+                        margin-left: 20px;
+                    }
+                }
+                &:nth-child(3) {
+                    p {
+                        margin-left: 37px;
+                    }
+                }
+                &:nth-child(4) {
+                    p {
+                        margin-left: 47px;
+                    }
+                }
             }
         }
     }
