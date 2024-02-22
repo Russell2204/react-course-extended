@@ -7,8 +7,9 @@ const Header = () => {
   const dispatch = useDispatch()
   const weatherData = useSelector((state) => state.weather.data)
   const changeWeatherHandler = (city) => {
-    city && dispatch(getWeatherData(city))
+    dispatch(getWeatherData(city))
   }
+  
   return (
     <header className="header">
       <Navbar changeWeather={changeWeatherHandler} />

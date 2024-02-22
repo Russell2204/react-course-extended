@@ -1,21 +1,17 @@
+import { useState, useEffect } from 'react'
 // import sun from './../../assets/images/sun.svg'
 import temp from './../../assets/images/temp.svg'
 import prec from './../../assets/images/prec.svg'
 import press from './../../assets/images/press.svg'
 import wind from './../../assets/images/wind.svg'
-import { useEffect } from 'react'
-const Content = ({ weather }) => {
-  const getDate = (date) => {
-    let newDate = new Date(date * 1000),
-      hours = newDate.getHours(),
-      minutes = '0' + newDate.getMinutes(),
-      formattedTime = hours + ':' + minutes.substr(-2)
 
-    return formattedTime
+const Content = ({ weather }) => {
+  function getDate(offset) {
+    const date = new Date(new Date().getTime() + offset * 1000)
+    const hours = ('0' + date.getUTCHours()).slice(-2)
+    const minutes = ('0' + date.getUTCMinutes()).slice(-2)
+    return `${hours}:${minutes}`
   }
-  useEffect(() => {
-    getDate(weather.current.dt)
-  }, [weather.current.dt])
 
   return (
     weather && (
@@ -23,7 +19,7 @@ const Content = ({ weather }) => {
         <div className="header__content-left">
           <h1>{Math.floor(weather.current.temp)}°</h1>
           <h2>Сегодня</h2>
-          <span>Время: {getDate(weather.current.dt) ?? '21:54'}</span>
+          <span>Время: {getDate(weather.timezone_offset)}</span>
           <span>Город: {weather.name ?? 'Чирчик'}</span>
           <img
             src={`https://openweathermap.org/img/wn/${weather.current.weather[0].icon}@4x.png`}

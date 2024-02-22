@@ -10,11 +10,15 @@ export const fetchWeatherData = async (city) => {
   )
   const defaultTown = { lat: '41.4726', lon: '69.5814' }
   const { lat, lon } = response.data[0] ?? defaultTown
-  const name = response.data[0].local_names.ru ?? response.data[0].local_names.en
+
+  const name =
+    response.data[0].local_names.ru ?? response.data[0].local_names.en
   const allWeather = await axios.get(
     `${API_URL_MAIN}?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
   )
-  const allData = { ...allWeather.data, name }
+  const { dt } = allWeather.data.current
+
+  const allData = { ...allWeather.data, name, dt }
   console.log(allData)
   return allData
 }
