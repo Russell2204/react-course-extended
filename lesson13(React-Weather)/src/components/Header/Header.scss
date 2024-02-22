@@ -28,7 +28,6 @@
         display: flex;
         gap: 50px;
         align-items: center;
-
         &-left {
             display: flex;
             flex-direction: column;
@@ -111,4 +110,7 @@
             }
         }
     }
+}
+.main {
+    padding-top: 50px !important;
 }

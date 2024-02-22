@@ -56,6 +56,7 @@ const Content = ({ weather }) => {
             </li>
           </ul>
         </div>
+     
       </div>
     )
   )
