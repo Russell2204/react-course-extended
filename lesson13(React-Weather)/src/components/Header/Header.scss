@@ -112,5 +112,58 @@
     }
 }
 .main {
+    &-title {
+        border-radius: 5px;
+
+        box-shadow: $BS;
+        color: white;
+        background: rgb(71, 147, 255);
+        padding: 7px 20px;
+        width: max-content;
+        margin-bottom: 7px;
+    }
     padding-top: 50px !important;
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 20px;
+        box-shadow: $BS;
+        &-day {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background: $LBB;
+            border-radius: 10px;
+            padding: 11px;
+            width: 150px;
+            h3 {
+                font-weight: 500;
+                font-size: 18px;
+                margin-bottom: 7px;
+            }
+            h4 {
+                color: rgb(147, 156, 176);
+                font-size: 14px;
+                font-weight: 400;
+                margin-bottom: 7px;
+            }
+            span {
+                font-size: 18px;
+                font-weight: 500;
+            }
+            h5 {
+                color: rgb(147, 156, 176);
+                font-size: 13px;
+                font-weight: 400;
+                margin-bottom: 6px;
+            }
+            h6 {
+                color: rgb(147, 156, 176);
+                font-size: 13px;
+                font-weight: 400;
+            }
+        }
+        margin-bottom: 150px;
+    }
 }
