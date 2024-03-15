@@ -30,9 +30,13 @@ const Main = ({ weather }) => {
                 : '+' + Math.floor(day.temp.day)}
               °
             </span>
-            <h5>  {Math.floor(day.feels_like.day) < 0
+            <h5>
+              {' '}
+              {Math.floor(day.feels_like.day) < 0
                 ? Math.floor(day.feels_like.day)
-                : '+' + Math.floor(day.feels_like.day)}°</h5>
+                : '+' + Math.floor(day.feels_like.day)}
+              °
+            </h5>
             <h6>{day.weather[0].description}</h6>
           </div>
         ))}
