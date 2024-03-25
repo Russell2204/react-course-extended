@@ -1,29 +1,34 @@
 import React from 'react'
+import Main from '../Main/Main.jsx'
 import Navbar from './Navbar'
 import Content from './Content'
 import { useDispatch, useSelector } from 'react-redux'
-import { getWeatherData } from '../../api/weatherThunk'
-import Main from '../Main/Main'
 import Loader from './Loader'
+import { getWeatherInfo } from '../../store/getWeatherSlice.js'
 const Header = () => {
   const dispatch = useDispatch()
-  const weatherData = useSelector((state) => state.weather.data)
+  const weatherInfo = useSelector((state) => state.weather.data)
   const changeWeatherHandler = (city) => {
-    dispatch(getWeatherData(city))
+    dispatch(getWeatherInfo(city))
   }
 
   return (
     <header className="header">
       <Navbar changeWeather={changeWeatherHandler} />
-      {
-      weatherData ?
-      (<>
-      <Content weather={weatherData} /> 
-      <Main weather={weatherData}/>
-      </>) : (
-        <Loader/>
-      )
-      }
+      {weatherInfo ? (
+        <>
+          <Content
+            weather={weatherInfo.weatherData}
+            name={weatherInfo.geoData}
+          />
+          <Main
+            weather={weatherInfo.weatherData}
+            name={weatherInfo.geoData}
+          />
+        </>
+      ) : (
+        <Loader />
+      )}
     </header>
   )
 }

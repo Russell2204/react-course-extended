@@ -9,11 +9,10 @@ const Navbar = ({ changeWeather }) => {
     if (isMounted.current && city) {
       changeWeather(city)
     } else {
-      changeWeather('Chirchiq')
+      changeWeather('Чирчик')
     }
     isMounted.current = true
   }, [city])
-
   return (
     <nav className="container header__nav">
       <a href="#" className="header__nav-logo">
