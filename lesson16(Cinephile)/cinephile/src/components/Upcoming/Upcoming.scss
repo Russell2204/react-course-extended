@@ -4,8 +4,7 @@
     overflow: hidden;
     user-select: none;
     &-item {
-        height: 100%;
-        
+        height: 100vh;
         > img {
             position: absolute;
             left: 0;
@@ -34,7 +33,8 @@
                 max-width: 960px;
             }
         }
-        &-next, &-prev{
+        &-next,
+        &-prev {
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
@@ -46,7 +46,7 @@
             display: flex;
             align-items: center;
             height: 100px;
-            img{
+            img {
                 position: absolute;
                 right: 0;
                 top: 0;
@@ -54,8 +54,8 @@
                 width: 50%;
                 object-fit: cover;
             }
-            div:first-of-type{
-                background: linear-gradient(90deg, #000 55.64%, rgba(0, 0, 0, 0.00) 100%);
+            div:first-of-type {
+                background: linear-gradient(90deg, #000 55.64%, rgba(0, 0, 0, 0) 100%);
                 width: 100%;
                 height: 100%;
                 color: white;
@@ -64,53 +64,54 @@
                 flex-direction: column;
                 gap: 15px;
                 padding: 15px;
-                h2{
+                h2 {
                     font-size: 18px;
                 }
             }
         }
-        &-prev{
+        &-prev {
             left: 10px;
-            img{
+            img {
                 left: 0;
             }
-            div:first-of-type{
-                background: linear-gradient(-90deg, #000 55.64%, rgba(0, 0, 0, 0.00) 100%);
+            div:first-of-type {
+                background: linear-gradient(-90deg, #000 55.64%, rgba(0, 0, 0, 0) 100%);
                 align-items: flex-end;
             }
         }
-        &-line{
+        &-line {
             position: absolute;
             bottom: 0;
             height: 7px;
             width: 100%;
-            background: rgba(255, 255, 255, 0.50);
-            &::after{
-                content: '';
+            background: rgba(255, 255, 255, 0.5);
+            &::after {
+                content: "";
                 position: absolute;
                 bottom: 0;
                 height: 7px;
-                background: #149A03;
+                background: #149a03;
                 animation: fill 10s infinite ease-in-out;
             }
         }
     }
 }
 @keyframes fill {
-    0%{
+    0% {
         width: 0;
     }
-    100%{
+    100% {
         width: 100%;
     }
 }
-
-.upcoming-enter-active{
-  transition: .3s;
+.main-upcoming-item {
+    transition: all 0.5s ease-in;
 }
-
-.upcoming-enter-from,
-.upcoming-leave-to {
-  opacity: 0;
-  transform: scale(1.1);
+.slide-in-right {
+    opacity: 1;
+    transform: scale(1);
+}
+.slide-out-right {
+    opacity: 0;
+    transform: scale(1.1);
 }
