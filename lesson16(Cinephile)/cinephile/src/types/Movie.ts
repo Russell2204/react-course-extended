@@ -14,3 +14,8 @@ export interface Movie {
     vote_average: number,
     vote_count: number
   }
+ export type UpcomingItemProps = {
+    movie: Movie,
+    next: ()=>void,
+    nextSlide: Movie
+  }

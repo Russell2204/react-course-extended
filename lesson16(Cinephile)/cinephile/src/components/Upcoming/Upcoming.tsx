@@ -1,75 +1,70 @@
-import React, { useEffect, useRef, useState } from 'react'
-import BtnMore from 'components/UI/BtnMore'
+import { useEffect, useRef, useState } from 'react'
 import useUpcomingStore, { selectUpcoming } from 'store/upcoming'
 import { Movie } from 'types/Movie'
-import { imageFull } from 'store/url'
+import UpcomingItem from './UpcomingItem'
 
 const Upcoming: React.FC = () => {
-  const fetchUpcoming = useUpcomingStore((state) => state.fetchUpcoming) as () => void
-  const upcoming = useUpcomingStore(selectUpcoming) as Movie[] | null
-  const isMounted = useRef(false)
-  
+  const fetchUpcoming = useUpcomingStore(
+    (state) => state.fetchUpcoming
+  ) as () => void
+  const upcoming = useUpcomingStore(selectUpcoming) as Movie[]
+  const isMounted = useRef<boolean>(false)
+  const [slideView, setSlideView] = useState<number>(0)
+
   useEffect(() => {
     if (isMounted.current) {
-      fetchUpcoming()
-      setTimeoutMy(setTimeout(() => slide(), 1000))
+      const interval = setInterval(() => {
+        if (upcoming && upcoming.length > 0) {
+          if (slideView < upcoming.length - 1) {
+            setSlideView(slideView + 1)
+          } else {
+            setSlideView(0)
+          }
+        }
+      }, 10000)
+
+      return () => clearInterval(interval)
     }
     isMounted.current = true
-  }, [])
+  }, [isMounted.current, slideView, upcoming])
 
-  const [slideView, setSlideView] = useState<number>(0)
-  const [timeout, setTimeoutMy] = useState<any>(null)
-
-  const slide = () => {
-    if (upcoming && upcoming.length - 1 === slideView) {
-      setSlideDirection('slide-out-right');
-      setTimeoutMy(setTimeout(() => {
-        setSlideDirection('slide-in-right');
-        setSlideView(0);
-      }, 500));
-    } else {
-      setSlideDirection('slide-out-right');
-      setTimeoutMy(setTimeout(() => {
-        setSlideDirection('slide-in-right');
-        setSlideView((prev) => prev + 1);
-      }, 500));
+  useEffect(() => {
+    if (!upcoming) {
+      fetchUpcoming()
     }
-    setTimeoutMy(setTimeout(() => slideNext(), 10000))
+  }, [fetchUpcoming, upcoming])
+
+  const handleNextSlide = () => {
+    setSlideView((prevSlide) =>
+      prevSlide === upcoming.length - 1 ? 0 : prevSlide + 1
+    )
   }
 
-  const slideNext = () => {
-    clearTimeout(timeout)
-    slide()
-  }
-
-  const slidePrev = () => {
-    clearTimeout(timeout)
-    setTimeoutMy(setTimeout(() => slide(), 10000))
-    if (slideView > 0) {
-      setSlideView((prev) => prev - 1)
-    } else {
-      setSlideView(upcoming ? upcoming.length - 1 : 0)
-    }
-  }
-
-  const [slideDirection, setSlideDirection] = useState('slide-in-right');
   return (
     <div className="main-upcoming">
-      {upcoming &&
-        upcoming.map((movie: Movie, idx: number) => (
-          <div key={movie.id}>
-            {idx === slideView && (
-              <div className={`main-upcoming-item ${idx === slideView ? slideDirection : ''}`}>
-                <img src={imageFull + movie.backdrop_path} alt="" />
-                <div className="main-upcoming-item-content">
-                  <h1>{movie.title}</h1>
-                  <p>{movie.overview}</p>
-                  <BtnMore />
-                </div>
-              </div>
-            )}
-          </div>
-        ))}
+      {upcoming && (
+        <>
+          {upcoming.map((movie: Movie, idx: number) => (
+            <div
+              key={movie.id}
+              className={`main-upcoming__animate ${
+                idx === slideView ? 'active' : ''
+              }`}
+            >
+              <UpcomingItem
+                key={movie.id}
+                movie={movie}
+                next={handleNextSlide}
+                nextSlide={
+                  upcoming[
+                    slideView + 1 !== upcoming.length ? slideView + 1 : 0
+                  ]
+                }
+              />
+            </div>
+          ))}
+        </>
+      )}
     </div>
   )
 }

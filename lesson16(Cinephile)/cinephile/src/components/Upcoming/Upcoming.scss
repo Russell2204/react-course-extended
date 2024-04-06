@@ -33,8 +33,7 @@
                 max-width: 960px;
             }
         }
-        &-next,
-        &-prev {
+        &-next {
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
@@ -46,6 +45,7 @@
             display: flex;
             align-items: center;
             height: 100px;
+            
             img {
                 position: absolute;
                 right: 0;
@@ -69,27 +69,17 @@
                 }
             }
         }
-        &-prev {
-            left: 10px;
-            img {
-                left: 0;
-            }
-            div:first-of-type {
-                background: linear-gradient(-90deg, #000 55.64%, rgba(0, 0, 0, 0) 100%);
-                align-items: flex-end;
-            }
-        }
         &-line {
             position: absolute;
             bottom: 0;
-            height: 7px;
+            height: 3px;
             width: 100%;
             background: rgba(255, 255, 255, 0.5);
             &::after {
                 content: "";
                 position: absolute;
                 bottom: 0;
-                height: 7px;
+            height: 3px;
                 background: #149a03;
                 animation: fill 10s infinite ease-in-out;
             }
@@ -104,14 +94,26 @@
         width: 100%;
     }
 }
-.main-upcoming-item {
-    transition: all 0.5s ease-in;
-}
-.slide-in-right {
-    opacity: 1;
-    transform: scale(1);
-}
-.slide-out-right {
+
+.main-upcoming__animate {
+    position: absolute;
+    width: 100%;
     opacity: 0;
-    transform: scale(1.1);
-}
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .main-upcoming__animate.active {
+    opacity: 1;
+    animation: slideIn 0.5s;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: scale(1.05);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
