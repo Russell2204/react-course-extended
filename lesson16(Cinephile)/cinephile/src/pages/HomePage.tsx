@@ -1,8 +1,14 @@
+import Tvs from "components/TAM/Tvs"
+import Movies from "components/TAM/Movies"
 import Upcoming from "components/Upcoming/Upcoming"
 
-const HomePage = () => {
+const HomePage:React.FC = () => {
   return (
-    <Upcoming/>
+    <main className="main">
+      <Upcoming/>
+      <Movies/>
+      <Tvs/>
+    </main>
   )
 }
 export default HomePage

@@ -5,7 +5,7 @@ import UpcomingItem from './UpcomingItem'
 
 const Upcoming: React.FC = () => {
   const fetchUpcoming = useUpcomingStore(
-    (state) => state.fetchUpcoming
+    (state) => state.fetchData
   ) as () => void
   const upcoming = useUpcomingStore(selectUpcoming) as Movie[]
   const isMounted = useRef<boolean>(false)

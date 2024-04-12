@@ -1,5 +1,5 @@
 
-const MoviesPage = () => {
+const MoviesPage:React.FC = () => {
   return (
     <div>MoviesPage</div>
   )

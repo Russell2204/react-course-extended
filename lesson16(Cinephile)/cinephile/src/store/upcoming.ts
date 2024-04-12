@@ -1,22 +1,18 @@
 import {create} from 'zustand'
 import axios from "axios"
-import { Movie } from 'types/Movie'
+import { UpcomingStateMovies } from 'types/Movie'
 import { apiKey } from './url'
 
-interface UpcomingState {
-  fetchUpcoming: any
-  upcoming: Movie[] | null
-}
 
-const useUpcomingStore = create<UpcomingState>((set) => ({
-  upcoming: null,
-  fetchUpcoming: async () => {
+const useUpcomingStore = create<UpcomingStateMovies>((set) => ({
+  data: null,
+  fetchData: async () => {
     const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=ru-RU`
     const response = await axios.get(url)
-    set({ upcoming: response.data.results })
+    set({ data: response.data.results })
   }
 }))
 
-export const selectUpcoming = (state: UpcomingState) => state.upcoming
+export const selectUpcoming = (state: UpcomingStateMovies) => state.data
 
 export default useUpcomingStore
