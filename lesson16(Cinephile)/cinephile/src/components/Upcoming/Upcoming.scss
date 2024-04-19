@@ -104,6 +104,7 @@
   
   .main-upcoming__animate.active {
     opacity: 1;
+    z-index: 999;
     animation: slideIn 0.5s;
   }
   
@@ -117,3 +118,19 @@
       opacity: 1;
     }
   }
+  .btn-more{
+    padding: 10px 15px;
+    gap: 10px;
+    color: white;
+    background: #0D7000;
+    font-size: 20px;
+    border-radius: 10px;
+    align-items: center;
+    transition: .3s;
+    width: max-content;
+    display: flex;
+    &:hover{
+        background: #149A03;
+    }
+}
+

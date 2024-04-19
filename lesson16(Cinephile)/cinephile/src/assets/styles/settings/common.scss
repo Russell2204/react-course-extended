@@ -15,21 +15,8 @@
 body{
     background: #141414;
 }
-.btn-more{
-    display: flex;
-    padding: 10px 15px;
-    gap: 10px;
-    color: white;
-    background: #0D7000;
-    font-size: 20px;
-    border-radius: 10px;
-    align-items: center;
-    transition: .3s;
-    width: max-content;
-    &:hover{
-        background: #149A03;
-    }
-}
+
+
 @mixin media($size){
     @media (max-width: #{$size}px) {
         @content;

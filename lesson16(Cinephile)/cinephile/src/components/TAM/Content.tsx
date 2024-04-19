@@ -6,9 +6,9 @@ import usePopularStore, {
   selectPopularMovies,
   selectPopularTvs,
 } from 'store/popular'
-import { Movie } from 'types/Movie'
-import { Tv } from 'types/Movie'
+import { MovieAndTv } from 'types/Types'
 import { imageMini } from 'store/url'
+import ItemBlock from 'components/ItemBlock/ItemBlock'
 
 interface TAMProp {
   type: string
@@ -18,8 +18,8 @@ const Content: React.FC<TAMProp> = ({ type }) => {
   const fetchData = usePopularStore((state) => state.fetchData) as (
     type: string
   ) => void
-  const popularMovies = usePopularStore(selectPopularMovies) as Movie[]
-  const popularTvs = usePopularStore(selectPopularTvs) as Tv[]
+  const popularMovies = usePopularStore(selectPopularMovies) as MovieAndTv[]
+  const popularTvs = usePopularStore(selectPopularTvs) as MovieAndTv[]
   const isMounted = useRef<boolean>(false)
 
   useEffect(() => {
@@ -29,6 +29,16 @@ const Content: React.FC<TAMProp> = ({ type }) => {
     isMounted.current = true
   }, [isMounted.current])
 
+  const [active, setActive] = useState<boolean>(false)
+  const [media, setMedia] = useState<MovieAndTv | null>(null)
+  const getMedia = (item:MovieAndTv, type: string) => {
+    if(type === 'movie') setMedia(item)
+    else setMedia(item)
+    setActive(true)
+  }
+  const closeItemBlock = (disactive:boolean) => {
+    setActive(disactive)
+  }
   return (
     <section className="media">
       <Link className="media-title" to={type === 'movie' ? '/movies' : '/tvs'}>
@@ -55,7 +65,7 @@ const Content: React.FC<TAMProp> = ({ type }) => {
           <>
             {type === 'movie'
               ? popularMovies?.map((item) => (
-                  <SplideSlide key={item.id} className="media-slider-item">
+                  <SplideSlide key={item.id} className="media-slider-item" onClick={() => getMedia(item, type)}>
                     <img
                       src={imageMini + item.poster_path}
                       alt={item.poster_path}
@@ -63,7 +73,7 @@ const Content: React.FC<TAMProp> = ({ type }) => {
                   </SplideSlide>
                 ))
               : popularTvs?.map((item) => (
-                  <SplideSlide key={item.id} className="media-slider-item">
+                  <SplideSlide key={item.id} className="media-slider-item" onClick={() => getMedia(item, type)}>
                     <img
                       src={imageMini + item.poster_path}
                       alt={item.poster_path}
@@ -73,6 +83,7 @@ const Content: React.FC<TAMProp> = ({ type }) => {
           </>
         )}
       </Splide>
+      <ItemBlock active={active} media={media} closeItemBlock={closeItemBlock}/>
     </section>
   )
 }

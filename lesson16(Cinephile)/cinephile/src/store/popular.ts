@@ -1,6 +1,6 @@
 import {create} from 'zustand'
 import axios from "axios"
-import { PopularState } from 'types/Movie'
+import { PopularState } from 'types/Types'
 import { apiKey } from './url'
 
 

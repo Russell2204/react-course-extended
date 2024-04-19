@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import useUpcomingStore, { selectUpcoming } from 'store/upcoming'
-import { Movie } from 'types/Movie'
+import { MovieAndTv } from 'types/Types'
 import UpcomingItem from './UpcomingItem'
 
 const Upcoming: React.FC = () => {
   const fetchUpcoming = useUpcomingStore(
     (state) => state.fetchData
   ) as () => void
-  const upcoming = useUpcomingStore(selectUpcoming) as Movie[]
+  const upcoming = useUpcomingStore(selectUpcoming) as MovieAndTv[]
   const isMounted = useRef<boolean>(false)
   const [slideView, setSlideView] = useState<number>(0)
 
@@ -44,7 +44,7 @@ const Upcoming: React.FC = () => {
     <div className="main-upcoming">
       {upcoming && (
         <>
-          {upcoming.map((movie: Movie, idx: number) => (
+          {upcoming.map((movie: MovieAndTv, idx: number) => (
             <div
               key={movie.id}
               className={`main-upcoming__animate ${
@@ -52,7 +52,6 @@ const Upcoming: React.FC = () => {
               }`}
             >
               <UpcomingItem
-                key={movie.id}
                 movie={movie}
                 next={handleNextSlide}
                 nextSlide={

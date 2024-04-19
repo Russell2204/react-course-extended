@@ -1,12 +1,12 @@
 import BtnMore from 'components/UI/BtnMore'
 import { imageFull,imageMini } from 'store/url'
 import * as React from 'react'
-import { UpcomingItemProps } from 'types/Movie'
+import { UpcomingItemProps } from 'types/Types'
 
 const UpcomingItem: React.FC<UpcomingItemProps> = ({
   movie,
   next,
-  nextSlide
+  nextSlide,
 }) => {
   return (
     <div className="main-upcoming-item">
@@ -14,7 +14,7 @@ const UpcomingItem: React.FC<UpcomingItemProps> = ({
       <div className="main-upcoming-item-content">
         <h1>{movie.title}</h1>
         <p>{movie.overview}</p>
-        <BtnMore />
+        <BtnMore id={movie.id} type="movie"/>
       </div>
       <div className="main-upcoming-item-next" onClick={next}>
         <img src={imageMini + nextSlide.backdrop_path} alt="" />

@@ -4,6 +4,8 @@ import MoviesPage from "pages/MoviesPage"
 import SearchPage from "pages/SearchPage"
 import TvsPage from "pages/TvsPage.tsx"
 import Navbar from "components/Navbar/Navbar"
+import Movie from "pages/Movie"
+import Tv from "pages/Tv"
 
 
 const App: React.FC = () => {
@@ -16,6 +18,8 @@ const App: React.FC = () => {
         <Route path='/movies' element={<MoviesPage />} />
         <Route path='/search' element={<SearchPage />} />
         <Route path='/tvs' element={<TvsPage />} />
+        <Route path='/:type/:id' element={<Movie />} />
+        <Route path='/:type/:id' element={<Tv />} />
       </Routes>
     </Router>
   )
