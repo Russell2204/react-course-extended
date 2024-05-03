@@ -15,15 +15,16 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "@src/*": ["src/*"],
-      "@images/*": ["images/*"],
-      "@fonts/*": ["fonts/*"],
-      "@styles/*": ["styles/*"],
-      "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"],
-      "@store/*": ["store/*"],
+      "src/*": ["src/*"],
+      "images/*": ["images/*"],
+      "styles/*": ["styles/*"],
+      "components/*": ["components/*"],
+      "pages/*": ["pages/*"],
+      "store/*": ["store/*"],
+      "types/*": ["types/*"],
     },
     
+
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

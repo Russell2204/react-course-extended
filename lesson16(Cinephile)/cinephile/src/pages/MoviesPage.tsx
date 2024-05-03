@@ -1,7 +1,9 @@
+import Content from "components/Content/Content"
 
-const MoviesPage:React.FC = () => {
-  return (
-    <div>MoviesPage</div>
-  )
-}
-export default MoviesPage
+const MoviesPage = () => {
+    return (
+      <Content type="movie"/>
+    )
+  }
+  
+  export default MoviesPage

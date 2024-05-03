@@ -1,6 +1,6 @@
 import Content from "./Content"
 
-const Movies = () => {
+const Movies:React.FC = () => {
   return (
     <Content type="movie"/>
   )

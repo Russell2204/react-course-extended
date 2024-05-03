@@ -1,6 +1,6 @@
 import Content from "./Content"
 
-const Tvs = () => {
+const Tvs:React.FC = () => {
   return (
     <Content type="tv"/>
   )

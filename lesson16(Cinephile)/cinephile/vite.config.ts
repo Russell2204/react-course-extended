@@ -8,11 +8,11 @@ export default defineConfig({
     alias: {
       src: "/src",
       images: "/src/assets/images",
-      fonts: "/src/assets/fonts",
       styles: "/src/assets/styles",
-      pages: "/src/pages",
       components: "/src/components",
-      store: "/src/store"
+      pages: "/src/pages",
+      store: "/src/store",
+      types: "/src/types",
     }
   }
 })
