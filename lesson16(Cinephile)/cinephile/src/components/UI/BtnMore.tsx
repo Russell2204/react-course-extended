@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
-
-const BtnMore = () => {
+interface BtnMoreProps {
+  id: number,
+  type: string
+}
+const BtnMore:React.FC<BtnMoreProps> = ({id, type}) => {
   return (
-    <Link to="/" className="btn-more">
+    <Link to={`/${type}/${id}`} className="btn-more">
         <i className="fa-solid fa-bars"></i>
         Подробнее
     </Link>

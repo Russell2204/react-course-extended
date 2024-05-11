@@ -74,7 +74,7 @@ const Content: React.FC<contentProps> = ({ type }) => {
                     </>
                 ) }
             </Splide>
-            <ItemBlock media={media} active={active} close={closeItemBlock}/>
+            <ItemBlock media={media} active={active} close={closeItemBlock} type={type} current={false}/>
         </section>
     )
 }

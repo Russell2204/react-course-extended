@@ -12,10 +12,10 @@ const Upcoming: React.FC = () => {
   useEffect(() => {
     if (isMounted.current) {
       const interval = setInterval(() => {
-        if(upcoming && upcoming.length > 0){
-          if(slideView < upcoming.length - 1){
+        if (upcoming && upcoming.length > 0) {
+          if (slideView < upcoming.length - 1) {
             setSlideView(slideView + 1)
-          }else{
+          } else {
             setSlideView(0)
           }
         }
@@ -25,25 +25,25 @@ const Upcoming: React.FC = () => {
     isMounted.current = true
   }, [isMounted.current, upcoming, slideView])
   useEffect(() => {
-    if(!upcoming){
+    if (!upcoming) {
       fetchUpcoming()
     }
   }, [fetchUpcoming, upcoming])
-  
+
   const handleNextSlide = () => {
     setSlideView((prevSlide) => prevSlide === upcoming.length - 1 ? 0 : prevSlide + 1)
   }
-  
+
   return (
     <div className="main__upcoming">
       {upcoming &&
         <>
-          {upcoming.map((movie:Movie, idx:number) => (
+          {upcoming.map((movie: Movie, idx: number) => (
             <div key={movie.id} className={`main__upcoming-animate ${idx === slideView ? 'active' : ''}`}>
-              <UpcomingItem
-                 movie={movie}
-                 next={handleNextSlide}
-                 nextSlide={upcoming[slideView + 1 !== upcoming.length ? slideView + 1 : 0]} 
+                <UpcomingItem
+                  movie={movie}
+                  next={handleNextSlide}
+                  nextSlide={upcoming[slideView + 1 !== upcoming.length ? slideView + 1 : 0]}
                 />
             </div>
           ))}

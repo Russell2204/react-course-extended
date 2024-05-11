@@ -19,7 +19,10 @@ body{
     margin: 0 auto;
     padding: 0 15px;
 }
-
+.none{
+    display: none !important;
+    visibility: hidden !important;
+}
 @import url(components/Navbar/Navbar.scss);
 @import url(components/Upcoming/Upcoming.scss);
 @import url(components/TAM/TAM.scss);

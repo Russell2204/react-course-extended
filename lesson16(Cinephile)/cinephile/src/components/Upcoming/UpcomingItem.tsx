@@ -10,7 +10,7 @@ const UpcomingItem:React.FC<UpcomingItemProps> = ({movie, next, nextSlide}) => {
         <div className="main__upcoming-content">
           <h1>{movie.title}</h1>
           <p>{movie.overview}</p>
-          <BtnMore/>
+          <BtnMore id={movie.id} type='movie'/>
         </div>
         <div className="main__upcoming-item-next" onClick={next}>
           <img src={imageMini + nextSlide.backdrop_path} alt="" />

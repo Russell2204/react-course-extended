@@ -1,4 +1,4 @@
-import logo from 'images/Logo.svg'
+import logo from 'images/logo.svg'
 import { NavLink } from 'react-router-dom'
 
 const Navbar:React.FC = () => {
