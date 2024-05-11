@@ -34,3 +34,7 @@ export interface CurrentState {
     tv: null | Movie
     fetchData: any
 }
+export interface SearchStateMovies {
+    data: Movie[] | null
+    fetchData: any
+}

@@ -1,5 +1,6 @@
 @import url(fonts.scss);
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -10,19 +11,47 @@
     font-family: 'Raleway';
     font-weight: 400;
 }
-body{
+
+body {
     background: #141414;
 }
-.container{
+
+.container {
     max-width: 1370px;
     width: 100%;
     margin: 0 auto;
     padding: 0 15px;
 }
-.none{
+
+.none {
     display: none !important;
     visibility: hidden !important;
 }
+
+.search {
+    padding-top: 130px;
+
+    input {
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        &::placeholder {
+            color: #141414;
+            font-weight: 700;
+        }
+    }
+    &__results{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 30px;
+        img{
+            width: 100%;
+            border-radius: 10px
+        }
+    }
+}
+
 @import url(components/Navbar/Navbar.scss);
 @import url(components/Upcoming/Upcoming.scss);
 @import url(components/TAM/TAM.scss);
